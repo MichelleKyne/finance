@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Credit
+{% endblock %}
+
+{% block main %}
+    <form action="/credit" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" min="0" name="credit" placeholder="Credit" type="number">
+        </div>
+        <button class="btn btn-primary" type="submit">Credit account</button>
+    </form>
+{% endblock %}

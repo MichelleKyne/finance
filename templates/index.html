@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+    <table class="table table-striped">
+        <thead>
+            <tr align="left">
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Shares</th>
+                <th>Current price</th>
+                <th>Total value</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr align="left">
+                <td colspan="4"></td>
+                <td><b>{{ "${:,.2f}".format(totalShareValue + cash) }}</b></td>
+            </tr>
+        </tfoot>
+        <tbody>
+            {% for stock in stocks %}
+                {% if stock['shares'] > 0 %}
+                    <tr align="left">
+                    <!--Note: not indexing stocks within the table data tags but referencing stock from above-->
+                        <td>{{ stock['symbol'] }}</td>
+                        <td>{{ stock['name'] }}</td>
+                        <td>{{ stock['shares'] }}</td>
+                        <td>{{ "${:,.2f}".format(stock['currentprice']) }}</td>
+                        <td>{{ "${:,.2f}".format(stock['total']) }}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            <tr align="left">
+                <td colspan="4">CASH</td>
+                <td>{{ "${:,.2f}".format(cash) }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+{% endblock %}
